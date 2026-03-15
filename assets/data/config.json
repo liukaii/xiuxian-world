@@ -1,0 +1,32 @@
+{
+  "project": "xiuxian-world",
+  "name": "淇粰涓栫晫",
+  "version": "0.1.0",
+  "description": "涓€涓熀浜庝笢鏂逛慨浠欐枃鍖栫殑妯℃嫙涓栫晫椤圭洰",
+  "author": "liukaii",
+  "license": "MIT",
+  "repository": "https://github.com/liukaii/xiuxian-world",
+  "systems": [
+    "cultivation",
+    "sect",
+    "combat",
+    "crafting",
+    "exploration"
+  ],
+  "cultivationRealms": [
+    {"name": "鐐兼皵鏈?, "lifespan": 100, "power": 1},
+    {"name": "绛戝熀鏈?, "lifespan": 200, "power": 10},
+    {"name": "閲戜腹鏈?, "lifespan": 500, "power": 100},
+    {"name": "鍏冨┐鏈?, "lifespan": 1000, "power": 1000},
+    {"name": "鍖栫鏈?, "lifespan": 2000, "power": 10000},
+    {"name": "鐐艰櫄鏈?, "lifespan": 5000, "power": 100000},
+    {"name": "鍚堜綋鏈?, "lifespan": 10000, "power": 1000000},
+    {"name": "澶т箻鏈?, "lifespan": 20000, "power": 10000000},
+    {"name": "娓″姭鏈?, "lifespan": 50000, "power": 100000000},
+    {"name": "鐪熶粰", "lifespan": -1, "power": 1000000000}
+  ],
+  "elements": ["閲?, "鏈?, "姘?, "鐏?, "鍦?],
+  "spiritRootQualities": ["浼伒鏍?, "鐪熺伒鏍?, "澶╃伒鏍?, "鍙樺紓鐏垫牴", "娣锋矊鐏垫牴"],
+  "skillGrades": ["榛勯樁", "鐜勯樁", "鍦伴樁", "澶╅樁", "浠欓樁"],
+  "itemGrades": ["鍑″搧", "鐏靛搧", "鍦板搧", "澶╁搧", "浠欏搧"]
+}
