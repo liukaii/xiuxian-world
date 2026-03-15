@@ -1,0 +1,64 @@
+# 淇粰涓栫晫椤圭洰 - Git蹇界暐鏂囦欢
+
+# 鎿嶄綔绯荤粺鏂囦欢
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE鍜岀紪杈戝櫒
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# 渚濊禆鍜屽寘绠＄悊
+node_modules/
+vendor/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# 鏃ュ織鍜屼复鏃舵枃浠?*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# 鐜鍙橀噺鍜屾晱鎰熶俊鎭?.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# 鏁版嵁搴?*.db
+*.sqlite
+*.sqlite3
+
+# 缂栬瘧杈撳嚭
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+*.o
+*.obj
+
+# 娴嬭瘯瑕嗙洊鐜?coverage/
+.nyc_output/
+
+# 鏂囨。鏋勫缓
+site/
+docs/_build/
+
+# 娓告垙鐗瑰畾
+saves/
+screenshots/
+recordings/
