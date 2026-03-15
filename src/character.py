@@ -133,7 +133,7 @@ class Character:
         
         # 妫€鏌ュ鍛?        if self.age >= self.get_lifespan():
             self.is_alive = False
-            results["messages"].append("瀵垮厓鑰楀敖锛岄亾娑堣韩姝?..")
+            results["messages"].append("[瀵垮厓鑰楀敖] 閬撴秷韬...")
         
         return results
     
@@ -160,15 +160,15 @@ class Character:
             
             new_realm = self.get_realm_name()
             result["success"] = True
-            result["messages"].append(f"馃帀 绐佺牬鎴愬姛锛佽笍鍏new_realm}锛?)
+            result["messages"].append(f"[绐佺牬鎴愬姛] 韪忓叆{new_realm}锛?)
             
             # 澶у鐣岀獊鐮寸殑鐗规畩鏁堟灉
-            if self.realm_level in [2, 5, 8]:  # 閲戜腹銆佸悎浣撱€佹浮鍔?                result["messages"].append("鈿?澶╅檷寮傝薄锛屼慨涓哄ぇ娑紒")
+            if self.realm_level in [2, 5, 8]:  # 閲戜腹銆佸悎浣撱€佹浮鍔?                result["messages"].append("[澶╅檷寮傝薄] 淇负澶ф定锛?)
                 self.destiny += 1
         else:
             # 绐佺牬澶辫触
             self.realm_progress = max(0, self.realm_progress - 20)
-            result["messages"].append("馃挃 绐佺牬澶辫触锛屼慨涓哄彈鎹?..")
+            result["messages"].append("[绐佺牬澶辫触] 淇负鍙楁崯...")
             
             # 涓ラ噸澶辫触鍙兘鍙椾激
             if random.random() < 0.3:
@@ -206,7 +206,18 @@ class Character:
     def get_status(self) -> str:
         """鑾峰彇瑙掕壊鐘舵€?""
         status = f"""
-鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹? {self.name:^35}  鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?澧冪晫: {self.get_realm_name():<12} 鎴樺姏: {self.get_power():<8} 鈹?鈹?骞撮緞: {self.age:<4}宀?   瀵垮厓: {self.get_remaining_life():<4}骞?     鈹?鈹?鐢熷懡: {self.hp}/{self.max_hp:<4}    娉曞姏: {self.mp}/{self.max_mp:<4}    鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?鐏垫牴: {str(self.spirit_root):<28} 鈹?鈹?鎮熸€? {self.comprehension:<4}      鏈虹紭: {self.luck:<4}      鎰熺煡: {self.perception:<4} 鈹?鈹?鍛芥牸: {self.destiny:<4}      涓氬姏: {self.karma:<+4}                鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?鐏电煶: {self.spirit_stones:<6}    鐗╁搧: {len(self.items):<4}浠?     鍔熸硶: {len(self.skills):<4}闂?鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?"""
+----------------------------------------
+           {self.name}
+----------------------------------------
+澧冪晫: {self.get_realm_name()}    鎴樺姏: {self.get_power()}
+骞撮緞: {self.age}宀?   瀵垮厓: {self.get_remaining_life()}骞?鐢熷懡: {self.hp}/{self.max_hp}    娉曞姏: {self.mp}/{self.max_mp}
+----------------------------------------
+鐏垫牴: {str(self.spirit_root)}
+鎮熸€? {self.comprehension}    鏈虹紭: {self.luck}    鎰熺煡: {self.perception}
+鍛芥牸: {self.destiny}    涓氬姏: {self.karma:+d}
+----------------------------------------
+鐏电煶: {self.spirit_stones}    鐗╁搧: {len(self.items)}浠?   鍔熸硶: {len(self.skills)}闂?----------------------------------------
+"""
         return status
     
     def __str__(self):
