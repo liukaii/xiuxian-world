@@ -129,7 +129,8 @@ class Character:
             results["realm_breakthrough"] = breakthrough_result["success"]
             results["messages"].extend(breakthrough_result["messages"])
         
-        # 娑堣€楁椂闂?        self.age += days
+        # 娑堣€楁椂闂达紙澶╄浆鎹负骞达級
+        self.age += days / 365
         
         # 妫€鏌ュ鍛?        if self.age >= self.get_lifespan():
             self.is_alive = False
