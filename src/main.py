@@ -4,6 +4,11 @@ import json
 import random
 from datetime import datetime
 
+# 璁剧疆UTF-8缂栫爜锛圵indows鍏煎锛?import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
 # 娣诲姞褰撳墠鐩綍鍒拌矾寰?sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from config import GameConfig, game_state
