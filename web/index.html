@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淇粰涓栫晫 - Xiuxian World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #aaa;
+            font-size: 1.1em;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .card-title {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #ffd700;
+            border-bottom: 2px solid rgba(255,215,0,0.3);
+            padding-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 5px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-success {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            color: white;
+        }
+        
+        .btn-warning {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s;
+        }
+        
+        .log {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .log-entry {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .player-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .player-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .player-info h4 {
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+        
+        .player-info p {
+            font-size: 0.85em;
+            color: #aaa;
+        }
+        
+        .realm-badge {
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1em;
+        }
+        
+        input::placeholder {
+            color: #888;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 鏍囬 -->
+        <div class="header">
+            <h1>鈿旓笍 淇粰涓栫晫</h1>
+            <p>Xiuxian World - A Cultivation Journey</p>
+        </div>
+
+        <!-- 鐧诲綍鐣岄潰 -->
+        <div id="login-screen" class="card">
+            <div class="card-title">閫夋嫨韬唤杩涘叆</div>
+            <div class="menu-grid">
+                <button class="btn btn-primary" onclick="showPlayerLogin()">馃幃 鐜╁妯″紡</button>
+                <button class="btn btn-warning" onclick="showGodLogin()">馃憗锔?澶╅亾妯″紡</button>
+            </div>
+        </div>
+
+        <!-- 鐜╁鐧诲綍 -->
+        <div id="player-login" class="card hidden">
+            <div class="card-title">鐜╁鐧诲綍</div>
+            <input type="text" id="player-name" placeholder="杈撳叆瑙掕壊鍚嶏紙鐣欑┖鍒涘缓鏂拌鑹诧級">
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-success" onclick="playerLogin()">杩涘叆娓告垙</button>
+                <button class="btn" onclick="backToMain()">杩斿洖</button>
+            </div>
+        </div>
+
+        <!-- 澶╅亾鐧诲綍 -->
+        <div id="god-login" class="card hidden">
+            <div class="card-title">澶╅亾妯″紡楠岃瘉</div>
+            <input type="password" id="god-password" placeholder="杈撳叆澶╅亾瀵嗙爜">
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-warning" onclick="godLogin()">杩涘叆澶╅亾</button>
+                <button class="btn" onclick="backToMain()">杩斿洖</button>
+            </div>
+        </div>
+
+        <!-- 鐜╁娓告垙鐣岄潰 -->
+        <div id="player-game" class="hidden">
+            <!-- 瑙掕壊鐘舵€?-->
+            <div class="card">
+                <div class="card-title">瑙掕壊淇℃伅</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">濮撳悕</div>
+                        <div class="stat-value" id="p-name">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">澧冪晫</div>
+                        <div class="stat-value" id="p-realm">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">骞撮緞</div>
+                        <div class="stat-value" id="p-age">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">瀵垮厓</div>
+                        <div class="stat-value" id="p-lifespan">-</div>
+                    </div>
+                </div>
+                
+                <div style="margin: 15px 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>淇负杩涘害</span>
+                        <span id="p-progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="p-progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">鎴樺姏</div>
+                        <div class="stat-value" id="p-power">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">鐏电煶</div>
+                        <div class="stat-value" id="p-stones">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 琛屽姩鑿滃崟 -->
+            <div class="card">
+                <div class="card-title">琛屽姩</div>
+                <div class="menu-grid">
+                    <button class="btn btn-primary" onclick="cultivate(1)">淇偧1澶?/button>
+                    <button class="btn btn-primary" onclick="cultivate(10)">淇偧10澶?/button>
+                    <button class="btn btn-success" onclick="explore()">鎺㈢储涓栫晫</button>
+                    <button class="btn" onclick="showInventory()">鏌ョ湅鐗╁搧</button>
+                </div>
+            </div>
+
+            <!-- 鏃ュ織 -->
+            <div class="card">
+                <div class="card-title">淇偧鏃ュ織</div>
+                <div class="log" id="player-log">
+                    <div class="log-entry">娆㈣繋鏉ュ埌淇粰涓栫晫...</div>
+                </div>
+            </div>
+
+            <!-- 閫€鍑?-->
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn" onclick="saveAndExit()">馃捑 淇濆瓨骞堕€€鍑?/button>
+            </div>
+        </div>
+
+        <!-- 澶╅亾鐣岄潰 -->
+        <div id="god-view" class="hidden">
+            <!-- 涓栫晫姒傚喌 -->
+            <div class="card">
+                <div class="card-title">涓栫晫姒傚喌</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">娓告垙鏃堕棿</div>
+                        <div class="stat-value" id="w-time">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">瀛樻椿淇＋</div>
+                        <div class="stat-value" id="w-cultivators">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">鐜╁鏁伴噺</div>
+                        <div class="stat-value" id="w-players">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">涓栫晫浜嬩欢</div>
+                        <div class="stat-value" id="w-events">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 鎵€鏈夌帺瀹?-->
+            <div class="card">
+                <div class="card-title">鎵€鏈夌帺瀹?/div>
+                <div class="player-list" id="god-player-list">
+                    <!-- 鍔ㄦ€佺敓鎴?-->
+                </div>
+            </div>
+
+            <!-- 閫€鍑?-->
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn" onclick="backToMain()">閫€鍑哄ぉ閬?/button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== 娓告垙鏁版嵁 ====================
+        const REALMS = [
+            {name: "鐐兼皵鏈?, lifespan: 100, power: 1},
+            {name: "绛戝熀鏈?, lifespan: 200, power: 10},
+            {name: "閲戜腹鏈?, lifespan: 500, power: 100},
+            {name: "鍏冨┐鏈?, lifespan: 1000, power: 1000},
+            {name: "鍖栫鏈?, lifespan: 2000, power: 10000},
+            {name: "鐐艰櫄鏈?, lifespan: 5000, power: 100000},
+            {name: "鍚堜綋鏈?, lifespan: 10000, power: 1000000},
+            {name: "澶т箻鏈?, lifespan: 20000, power: 10000000},
+            {name: "娓″姭鏈?, lifespan: 50000, power: 100000000},
+            {name: "鐪熶粰", lifespan: -1, power: 1000000000}
+        ];
+
+        const SURNAMES = ["鏉?, "鐜?, "寮?, "鍒?, "闄?, "鏉?, "璧?, "榛?, "鍛?, "鍚?, "寰?, "瀛?, "鑳?, "鏈?, "楂?, "鏋?, "浣?, "閮?, "椹?, "缃?];
+        const NAMES = ["浜?, "椋?, "闆?, "澶?, "鍦?, "鐜?, "榛?, "瀹?, "瀹?, "灞?, "娌?, "娴?, "宸?, "闈?, "绾?, "绱?, "鐧?, "閲?, "鏈?, "姘?, "鐏?, "鍦?, "闀?, "鐢?, "姘?, "鎭?, "鏃?, "鏋?, "閫?, "閬?];
+
+        // ==================== 鐘舵€佺鐞?====================
+        let currentPlayer = null;
+        let isGodMode = false;
+        const GOD_PASSWORD = "tiandao123"; // 澶╅亾瀵嗙爜
+
+        // 浠?localStorage 鍔犺浇鏁版嵁
+        function loadData() {
+            const data = localStorage.getItem('xiuxian_world');
+            return data ? JSON.parse(data) : { players: {}, world: { day: 1, year: 1, season: "鏄?, weather: "鏅存湕", events: [] } };
+        }
+
+        // 淇濆瓨鍒?localStorage
+        function saveData(data) {
+            localStorage.setItem('xiuxian_world', JSON.stringify(data));
+        }
+
+        // ==================== 宸ュ叿鍑芥暟 ====================
+        function randomChoice(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function generateName() {
+            return randomChoice(SURNAMES) + randomChoice(NAMES) + (Math.random() > 0.5 ? randomChoice(NAMES) : "");
+        }
+
+        function generateSpiritRoot() {
+            const rand = Math.random();
+            let quality, elements;
+            if (rand < 0.005) { quality = "娣锋矊鐏垫牴"; elements = ["閲?, "鏈?, "姘?, "鐏?, "鍦?]; }
+            else if (rand < 0.02) { quality = "鍙樺紓鐏垫牴"; elements = [randomChoice(["閲?, "鏈?, "姘?, "鐏?, "鍦?]), randomChoice(["閲?, "鏈?, "姘?, "鐏?, "鍦?])]; }
+            else if (rand < 0.1) { quality = "澶╃伒鏍?; elements = [randomChoice(["閲?, "鏈?, "姘?, "鐏?, "鍦?])]; }
+            else if (rand < 0.4) { quality = "鐪熺伒鏍?; elements = [randomChoice(["閲?, "鏈?, "姘?, "鐏?, "鍦?]), randomChoice(["閲?, "鏈?, "姘?, "鐏?, "鍦?])]; }
+            else { quality = "浼伒鏍?; elements = [randomChoice(["閲?, "鏈?, "姘?, "鐏?, "鍦?]), randomChoice(["閲?, "鏈?, "姘?, "鐏?, "鍦?]), randomChoice(["閲?, "鏈?, "姘?, "鐏?, "鍦?]), randomChoice(["閲?, "鏈?, "姘?, "鐏?, "鍦?])]; }
+            return { quality, elements };
+        }
+
+        // ==================== 鐣岄潰鍒囨崲 ====================
+        function showScreen(screenId) {
+            document.querySelectorAll('.card, #player-game, #god-view').forEach(el => {
+                if (!el.classList.contains('header')) el.classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        function showPlayerLogin() {
+            showScreen('player-login');
+        }
+
+        function showGodLogin() {
+            showScreen('god-login');
+        }
+
+        function backToMain() {
+            showScreen('login-screen');
+        }
+
+        // ==================== 鐜╁妯″紡 ====================
+        function playerLogin() {
+            const name = document.getElementById('player-name').value.trim();
+            const data = loadData();
+
+            if (name && data.players[name]) {
+                // 鍔犺浇宸叉湁瑙掕壊
+                currentPlayer = data.players[name];
+                addLog(`娆㈣繋鍥炴潵锛?{currentPlayer.name}锛乣);
+            } else {
+                // 鍒涘缓鏂拌鑹?                const spiritRoot = generateSpiritRoot();
+                currentPlayer = {
+                    name: name || generateName(),
+                    age: 15 + Math.floor(Math.random() * 15),
+                    realmLevel: 0,
+                    realmProgress: 0,
+                    hp: 100,
+                    maxHp: 100,
+                    mp: 50,
+                    maxMp: 50,
+                    comprehension: Math.floor(Math.random() * 10) + 1,
+                    luck: Math.floor(Math.random() * 10) + 1,
+                    perception: Math.floor(Math.random() * 10) + 1,
+                    karma: 0,
+                    destiny: Math.floor(Math.random() * 10) + 1,
+                    spiritStones: Math.floor(Math.random() * 100),
+                    items: [],
+                    skills: [],
+                    spiritRoot: spiritRoot,
+                    isAlive: true
+                };
+                data.players[currentPlayer.name] = currentPlayer;
+                saveData(data);
+                addLog(`鍒涘缓鏂拌鑹诧細${currentPlayer.name}`);
+                addLog(`鐏垫牴锛?{spiritRoot.quality}锛?{spiritRoot.elements.join('銆?)}锛塦);
+            }
+
+            updatePlayerUI();
+            document.getElementById('player-game').classList.remove('hidden');
+            document.getElementById('player-login').classList.add('hidden');
+        }
+
+        function updatePlayerUI() {
+            if (!currentPlayer) return;
+
+            document.getElementById('p-name').textContent = currentPlayer.name;
+            document.getElementById('p-realm').textContent = REALMS[currentPlayer.realmLevel].name;
+            document.getElementById('p-age').textContent = currentPlayer.age.toFixed(1) + '宀?;
+            
+            const remainingLife = REALMS[currentPlayer.realmLevel].lifespan - currentPlayer.age;
+            document.getElementById('p-lifespan').textContent = remainingLife.toFixed(0) + '骞?;
+            
+            document.getElementById('p-progress-text').textContent = currentPlayer.realmProgress.toFixed(1) + '%';
+            document.getElementById('p-progress-bar').style.width = Math.min(currentPlayer.realmProgress, 100) + '%';
+            
+            const power = REALMS[currentPlayer.realmLevel].power + Math.floor(currentPlayer.realmProgress / 100 * REALMS[currentPlayer.realmLevel].power) + currentPlayer.comprehension * 10;
+            document.getElementById('p-power').textContent = power;
+            document.getElementById('p-stones').textContent = currentPlayer.spiritStones;
+        }
+
+        function addLog(message) {
+            const log = document.getElementById('player-log');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.insertBefore(entry, log.firstChild);
+        }
+
+        function cultivate(days) {
+            if (!currentPlayer || !currentPlayer.isAlive) return;
+
+            for (let i = 0; i < days; i++) {
+                // 璁＄畻淇负澧為暱
+                const baseGain = 10;
+                const speedBonus = currentPlayer.spiritRoot.quality === "娣锋矊鐏垫牴" ? 3 : 
+                                  currentPlayer.spiritRoot.quality === "鍙樺紓鐏垫牴" ? 2.5 :
+                                  currentPlayer.spiritRoot.quality === "澶╃伒鏍? ? 2 :
+                                  currentPlayer.spiritRoot.quality === "鐪熺伒鏍? ? 1 : 0.5;
+                const comprehensionBonus = 1 + (currentPlayer.comprehension / 10);
+                const luckBonus = 1 + (currentPlayer.luck / 20);
+                
+                const gain = Math.floor(baseGain * speedBonus * comprehensionBonus * luckBonus);
+                currentPlayer.realmProgress += gain;
+
+                // 妫€鏌ョ獊鐮?                if (currentPlayer.realmProgress >= 100) {
+                    tryBreakthrough();
+                }
+
+                // 澧炲姞骞撮緞
+                currentPlayer.age += 1/365;
+
+                // 妫€鏌ュ鍛?                if (currentPlayer.age >= REALMS[currentPlayer.realmLevel].lifespan) {
+                    currentPlayer.isAlive = false;
+                    addLog(`[瀵垮厓鑰楀敖] ${currentPlayer.name}閬撴秷韬...`);
+                    break;
+                }
+            }
+
+            addLog(`淇偧${days}澶╋紝淇负澧炲姞`);
+            updatePlayerUI();
+            saveData(loadData());
+        }
+
+        function tryBreakthrough() {
+            const baseSuccess = 0.5;
+            const comprehensionBonus = currentPlayer.comprehension / 20;
+            const destinyBonus = currentPlayer.destiny / 20;
+            const karmaPenalty = Math.abs(currentPlayer.karma) / 100;
+            
+            const successRate = Math.max(0.1, Math.min(0.95, baseSuccess + comprehensionBonus + destinyBonus - karmaPenalty));
+            
+            if (Math.random() < successRate) {
+                // 绐佺牬鎴愬姛
+                currentPlayer.realmLevel++;
+                currentPlayer.realmProgress = 0;
+                currentPlayer.maxHp += 50;
+                currentPlayer.maxMp += 30;
+                currentPlayer.hp = currentPlayer.maxHp;
+                currentPlayer.mp = currentPlayer.maxMp;
+                
+                addLog(`[绐佺牬鎴愬姛] 韪忓叆${REALMS[currentPlayer.realmLevel].name}锛乣);
+                
+                if ([2, 5, 8].includes(currentPlayer.realmLevel)) {
+                    addLog('[澶╅檷寮傝薄] 淇负澶ф定锛?);
+                    currentPlayer.destiny++;
+                }
+            } else {
+                // 绐佺牬澶辫触
+                currentPlayer.realmProgress = Math.max(0, currentPlayer.realmProgress - 20);
+                addLog('[绐佺牬澶辫触] 淇负鍙楁崯...');
+                
+                if (Math.random() < 0.3) {
+                    const damage = Math.floor(currentPlayer.maxHp / 4);
+                    currentPlayer.hp -= damage;
+                    addLog(`鍙楀埌鍙嶅櫖锛屾崯澶?{damage}鐐圭敓鍛絗);
+                }
+            }
+        }
+
+        function explore() {
+            if (!currentPlayer || !currentPlayer.isAlive) return;
+
+            const events = [
+                { type: 'treasure', name: '鍙戠幇瀹濈墿', prob: 0.05 },
+                { type: 'cultivator', name: '閬囧埌淇＋', prob: 0.15 },
+                { type: 'beast', name: '閬亣濡栧吔', prob: 0.20 },
+                { type: 'master', name: '閬囧埌鍓嶈緢', prob: 0.02 },
+                { type: 'nothing', name: '骞冲畨鏃犱簨', prob: 0.38 }
+            ];
+
+            const rand = Math.random();
+            let cumulative = 0;
+            let selected = events[events.length - 1];
+            
+            for (const event of events) {
+                cumulative += event.prob;
+                if (rand < cumulative) {
+                    selected = event;
+                    break;
+                }
+            }
+
+            switch(selected.type) {
+                case 'treasure':
+                    const treasures = [
+                        {name: "鐧惧勾鐏佃姖", grade: "鍑″搧"},
+                        {name: "鍗冨勾浜哄弬", grade: "鐏靛搧"},
+                        {name: "鏈辨灉", grade: "鍦板搧"},
+                        {name: "榫欒鑽?, grade: "澶╁搧"}
+                    ];
+                    const treasure = randomChoice(treasures);
+                    currentPlayer.items.push(treasure);
+                    addLog(`[鍙戠幇瀹濈墿] 鑾峰緱${treasure.name}锛?{treasure.grade}锛塦);
+                    break;
+                
+                case 'cultivator':
+                    addLog('[閬囧埌淇＋] 閬囧埌涓€浣嶉亾鍙嬶紝浜ゆ祦淇偧蹇冨緱');
+                    currentPlayer.realmProgress += 5;
+                    break;
+                
+                case 'master':
+                    addLog('[閬囧埌鍓嶈緢] 鍓嶈緢鎸囩偣锛屾偀鎬?1锛屼慨涓哄ぇ娑?);
+                    currentPlayer.comprehension++;
+                    currentPlayer.realmProgress += 20;
+                    break;
+                
+                default:
+                    const peaceful = ["鍦ㄥ北鏋楅棿婕锛屽績澧冨钩鍜?, "鐪嬪埌鏃ュ嚭鏃ヨ惤锛屾劅鎮熻嚜鐒?, "甯姪杩疯矾鍑′汉锛岀Н寰疯鍠?];
+                    addLog(`[骞冲畨鏃犱簨] ${randomChoice(peaceful)}`);
+                    currentPlayer.karma++;
+            }
+
+            updatePlayerUI();
+            saveData(loadData());
+        }
+
+        function showInventory() {
+            if (!currentPlayer) return;
+            
+            let msg = `鐏电煶锛?{currentPlayer.spiritStones}\n\n鐗╁搧锛歕n`;
+            if (currentPlayer.items.length > 0) {
+                currentPlayer.items.forEach((item, i) => {
+                    msg += `${i+1}. ${item.name}锛?{item.grade}锛塡n`;
+                });
+            } else {
+                msg += "锛堢┖锛塡n";
+            }
+            
+            msg += "\n鍔熸硶锛歕n";
+            if (currentPlayer.skills.length > 0) {
+                currentPlayer.skills.forEach(skill => {
+                    msg += `- ${skill}\n`;
+                });
+            } else {
+                msg += "锛堟湭瀛︿範锛塡n";
+            }
+            
+            alert(msg);
+        }
+
+        function saveAndExit() {
+            const data = loadData();
+            data.players[currentPlayer.name] = currentPlayer;
+            saveData(data);
+            addLog('娓告垙宸蹭繚瀛橈紒');
+            
+            currentPlayer = null;
+            backToMain();
+        }
+
+        // ==================== 澶╅亾妯″紡 ====================
+        function godLogin() {
+            const password = document.getElementById('god-password').value;
+            
+            if (password === GOD_PASSWORD) {
+                isGodMode = true;
+                updateGodView();
+                document.getElementById('god-view').classList.remove('hidden');
+                document.getElementById('god-login').classList.add('hidden');
+            } else {
+                alert('瀵嗙爜閿欒锛?);
+            }
+        }
+
+        function updateGodView() {
+            const data = loadData();
+            
+            // 涓栫晫姒傚喌
+            document.getElementById('w-time').textContent = `绗?{data.world.year}骞?${data.world.season}`;
+            document.getElementById('w-cultivators').textContent = Object.keys(data.players).length;
+            document.getElementById('w-players').textContent = Object.keys(data.players).length;
+            document.getElementById('w-events').textContent = data.world.events ? data.world.events.length : 0;
+            
+            // 鐜╁鍒楄〃
+            const list = document.getElementById('god-player-list');
+            list.innerHTML = '';
+            
+            Object.values(data.players).forEach(player => {
+                const item = document.createElement('div');
+                item.className = 'player-item';
+                
+                const power = REALMS[player.realmLevel].power + Math.floor(player.realmProgress / 100 * REALMS[player.realmLevel].power);
+                const remainingLife = REALMS[player.realmLevel].lifespan - player.age;
+                
+                item.innerHTML = `
+                    <div class="player-info">
+                        <h4>${player.name} ${player.isAlive ? '' : '馃拃'}</h4>
+                        <p>骞撮緞锛?{player.age.toFixed(1)}宀?| 瀵垮厓锛?{remainingLife.toFixed(0)}骞?| 鎴樺姏锛?{power}</p>
+                        <p>鐏垫牴锛?{player.spiritRoot.quality} | 鐏电煶锛?{player.spiritStones} | 鐗╁搧锛?{player.items.length}浠?/p>
+                    </div>
+                    <span class="realm-badge">${REALMS[player.realmLevel].name}</span>
+                `;
+                
+                list.appendChild(item);
+            });
+        }
+
+        // 鍒濆鍖?        document.addEventListener('DOMContentLoaded', () => {
+            // 纭繚鏈夊垵濮嬫暟鎹?            const data = loadData();
+            if (!data.world) {
+                data.world = { day: 1, year: 1, season: "鏄?, weather: "鏅存湕", events: [] };
+                saveData(data);
+            }
+        });
+    </script>
+</body>
+</html>
