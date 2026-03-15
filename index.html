@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>修仙世界 - Xiuxian World</title>
+    <title>淇粰涓栫晫 - Xiuxian World</title>
     <style>
         * {
             margin: 0;
@@ -219,67 +219,67 @@
 </head>
 <body>
     <div class="container">
-        <!-- 标题 -->
+        <!-- 鏍囬 -->
         <div class="header">
-            <h1>⚔️ 修仙世界</h1>
+            <h1>鈿旓笍 淇粰涓栫晫</h1>
             <p>Xiuxian World - A Cultivation Journey</p>
         </div>
 
-        <!-- 主菜单 -->
+        <!-- 涓昏彍鍗?-->
         <div id="main-menu" class="card">
-            <div class="card-title">选择身份进入</div>
+            <div class="card-title">閫夋嫨韬唤杩涘叆</div>
             <div class="menu-grid">
-                <button class="btn btn-primary" onclick="showPlayerLogin()">🎮 玩家模式</button>
-                <button class="btn btn-warning" onclick="showGodLogin()">👁️ 天道模式</button>
+                <button class="btn btn-primary" onclick="showPlayerLogin()">馃幃 鐜╁妯″紡</button>
+                <button class="btn btn-warning" onclick="showGodLogin()">馃憗锔?澶╅亾妯″紡</button>
             </div>
         </div>
 
-        <!-- 玩家登录 -->
+        <!-- 鐜╁鐧诲綍 -->
         <div id="player-login" class="card hidden">
-            <div class="card-title">玩家登录</div>
-            <input type="text" id="player-name" placeholder="输入角色名（留空创建新角色）">
+            <div class="card-title">鐜╁鐧诲綍</div>
+            <input type="text" id="player-name" placeholder="杈撳叆瑙掕壊鍚嶏紙鐣欑┖鍒涘缓鏂拌鑹诧級">
             <div style="text-align: center; margin-top: 20px;">
-                <button class="btn btn-success" onclick="playerLogin()">进入游戏</button>
-                <button class="btn" onclick="backToMain()">返回</button>
+                <button class="btn btn-success" onclick="playerLogin()">杩涘叆娓告垙</button>
+                <button class="btn" onclick="backToMain()">杩斿洖</button>
             </div>
         </div>
 
-        <!-- 天道登录 -->
+        <!-- 澶╅亾鐧诲綍 -->
         <div id="god-login" class="card hidden">
-            <div class="card-title">天道模式验证</div>
-            <input type="password" id="god-password" placeholder="输入天道密码">
+            <div class="card-title">澶╅亾妯″紡楠岃瘉</div>
+            <input type="password" id="god-password" placeholder="杈撳叆澶╅亾瀵嗙爜">
             <div style="text-align: center; margin-top: 20px;">
-                <button class="btn btn-warning" onclick="godLogin()">进入天道</button>
-                <button class="btn" onclick="backToMain()">返回</button>
+                <button class="btn btn-warning" onclick="godLogin()">杩涘叆澶╅亾</button>
+                <button class="btn" onclick="backToMain()">杩斿洖</button>
             </div>
         </div>
 
-        <!-- 玩家游戏 -->
+        <!-- 鐜╁娓告垙 -->
         <div id="player-game" class="hidden">
             <div class="card">
-                <div class="card-title">角色信息</div>
+                <div class="card-title">瑙掕壊淇℃伅</div>
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-label">姓名</div>
+                        <div class="stat-label">濮撳悕</div>
                         <div class="stat-value" id="p-name">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">境界</div>
+                        <div class="stat-label">澧冪晫</div>
                         <div class="stat-value" id="p-realm">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">年龄</div>
+                        <div class="stat-label">骞撮緞</div>
                         <div class="stat-value" id="p-age">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">寿元</div>
+                        <div class="stat-label">瀵垮厓</div>
                         <div class="stat-value" id="p-lifespan">-</div>
                     </div>
                 </div>
                 
                 <div style="margin: 15px 0;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>修为进度</span>
+                        <span>淇负杩涘害</span>
                         <span id="p-progress-text">0%</span>
                     </div>
                     <div class="progress-bar">
@@ -289,89 +289,89 @@
 
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-label">战力</div>
+                        <div class="stat-label">鎴樺姏</div>
                         <div class="stat-value" id="p-power">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">灵石</div>
+                        <div class="stat-label">鐏电煶</div>
                         <div class="stat-value" id="p-stones">-</div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-title">行动</div>
+                <div class="card-title">琛屽姩</div>
                 <div class="menu-grid">
-                    <button class="btn btn-primary" onclick="cultivate(1)">修炼1天</button>
-                    <button class="btn btn-primary" onclick="cultivate(10)">修炼10天</button>
-                    <button class="btn btn-success" onclick="explore()">探索世界</button>
-                    <button class="btn" onclick="showInventory()">查看物品</button>
+                    <button class="btn btn-primary" onclick="cultivate(1)">淇偧1澶?/button>
+                    <button class="btn btn-primary" onclick="cultivate(10)">淇偧10澶?/button>
+                    <button class="btn btn-success" onclick="explore()">鎺㈢储涓栫晫</button>
+                    <button class="btn" onclick="showInventory()">鏌ョ湅鐗╁搧</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-title">修炼日志</div>
+                <div class="card-title">淇偧鏃ュ織</div>
                 <div class="log" id="player-log">
-                    <div class="log-entry">欢迎来到修仙世界...</div>
+                    <div class="log-entry">娆㈣繋鏉ュ埌淇粰涓栫晫...</div>
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 20px;">
-                <button class="btn" onclick="saveAndExit()">💾 保存并退出</button>
+                <button class="btn" onclick="saveAndExit()">馃捑 淇濆瓨骞堕€€鍑?/button>
             </div>
         </div>
 
-        <!-- 天道界面 -->
+        <!-- 澶╅亾鐣岄潰 -->
         <div id="god-view" class="hidden">
             <div class="card">
-                <div class="card-title">世界概况</div>
+                <div class="card-title">涓栫晫姒傚喌</div>
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-label">玩家数量</div>
+                        <div class="stat-label">鐜╁鏁伴噺</div>
                         <div class="stat-value" id="w-players">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">总修士</div>
+                        <div class="stat-label">鎬讳慨澹?/div>
                         <div class="stat-value" id="w-total">-</div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-title">所有玩家</div>
+                <div class="card-title">鎵€鏈夌帺瀹?/div>
                 <div class="player-list" id="god-player-list">
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 20px;">
-                <button class="btn" onclick="backToMain()">退出天道</button>
+                <button class="btn" onclick="backToMain()">閫€鍑哄ぉ閬?/button>
             </div>
         </div>
     </div>
 
     <script>
-        // 游戏数据
+        // 娓告垙鏁版嵁
         const REALMS = [
-            {name: "炼气期", lifespan: 100, power: 1},
-            {name: "筑基期", lifespan: 200, power: 10},
-            {name: "金丹期", lifespan: 500, power: 100},
-            {name: "元婴期", lifespan: 1000, power: 1000},
-            {name: "化神期", lifespan: 2000, power: 10000},
-            {name: "炼虚期", lifespan: 5000, power: 100000},
-            {name: "合体期", lifespan: 10000, power: 1000000},
-            {name: "大乘期", lifespan: 20000, power: 10000000},
-            {name: "渡劫期", lifespan: 50000, power: 100000000},
-            {name: "真仙", lifespan: -1, power: 1000000000}
+            {name: "鐐兼皵鏈?, lifespan: 100, power: 1},
+            {name: "绛戝熀鏈?, lifespan: 200, power: 10},
+            {name: "閲戜腹鏈?, lifespan: 500, power: 100},
+            {name: "鍏冨┐鏈?, lifespan: 1000, power: 1000},
+            {name: "鍖栫鏈?, lifespan: 2000, power: 10000},
+            {name: "鐐艰櫄鏈?, lifespan: 5000, power: 100000},
+            {name: "鍚堜綋鏈?, lifespan: 10000, power: 1000000},
+            {name: "澶т箻鏈?, lifespan: 20000, power: 10000000},
+            {name: "娓″姭鏈?, lifespan: 50000, power: 100000000},
+            {name: "鐪熶粰", lifespan: -1, power: 1000000000}
         ];
 
-        const SURNAMES = ["李", "王", "张", "刘", "陈", "杨", "赵", "黄", "周", "吴"];
-        const NAMES = ["云", "风", "雷", "天", "地", "玄", "黄", "宇", "宙", "山", "河", "海", "川", "青", "红", "紫", "白", "金", "木", "水", "火", "土", "长", "生", "永", "恒", "逍", "遥"];
-        const ELEMENTS = ["金", "木", "水", "火", "土"];
+        const SURNAMES = ["鏉?, "鐜?, "寮?, "鍒?, "闄?, "鏉?, "璧?, "榛?, "鍛?, "鍚?];
+        const NAMES = ["浜?, "椋?, "闆?, "澶?, "鍦?, "鐜?, "榛?, "瀹?, "瀹?, "灞?, "娌?, "娴?, "宸?, "闈?, "绾?, "绱?, "鐧?, "閲?, "鏈?, "姘?, "鐏?, "鍦?, "闀?, "鐢?, "姘?, "鎭?, "閫?, "閬?];
+        const ELEMENTS = ["閲?, "鏈?, "姘?, "鐏?, "鍦?];
 
         let currentPlayer = null;
         const GOD_PASSWORD = "tiandao123";
 
-        // 数据管理
+        // 鏁版嵁绠＄悊
         function loadData() {
             const data = localStorage.getItem('xiuxian_world_v2');
             return data ? JSON.parse(data) : { players: {} };
@@ -381,7 +381,7 @@
             localStorage.setItem('xiuxian_world_v2', JSON.stringify(data));
         }
 
-        // 工具函数
+        // 宸ュ叿鍑芥暟
         function randomChoice(arr) {
             return arr[Math.floor(Math.random() * arr.length)];
         }
@@ -393,15 +393,15 @@
         function generateSpiritRoot() {
             const rand = Math.random();
             let quality, elements;
-            if (rand < 0.005) { quality = "混沌灵根"; elements = [...ELEMENTS]; }
-            else if (rand < 0.02) { quality = "变异灵根"; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
-            else if (rand < 0.1) { quality = "天灵根"; elements = [randomChoice(ELEMENTS)]; }
-            else if (rand < 0.4) { quality = "真灵根"; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
-            else { quality = "伪灵根"; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS), randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
+            if (rand < 0.005) { quality = "娣锋矊鐏垫牴"; elements = [...ELEMENTS]; }
+            else if (rand < 0.02) { quality = "鍙樺紓鐏垫牴"; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
+            else if (rand < 0.1) { quality = "澶╃伒鏍?; elements = [randomChoice(ELEMENTS)]; }
+            else if (rand < 0.4) { quality = "鐪熺伒鏍?; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
+            else { quality = "浼伒鏍?; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS), randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
             return { quality, elements };
         }
 
-        // 界面切换
+        // 鐣岄潰鍒囨崲
         function showScreen(id) {
             ['main-menu', 'player-login', 'god-login', 'player-game', 'god-view'].forEach(s => {
                 document.getElementById(s).classList.add('hidden');
@@ -413,14 +413,14 @@
         function showGodLogin() { showScreen('god-login'); }
         function backToMain() { showScreen('main-menu'); }
 
-        // 玩家登录
+        // 鐜╁鐧诲綍
         function playerLogin() {
             const name = document.getElementById('player-name').value.trim();
             const data = loadData();
 
             if (name && data.players[name]) {
                 currentPlayer = data.players[name];
-                addLog(`欢迎回来，${currentPlayer.name}！`);
+                addLog(`娆㈣繋鍥炴潵锛?{currentPlayer.name}锛乣);
             } else {
                 const spiritRoot = generateSpiritRoot();
                 currentPlayer = {
@@ -440,8 +440,8 @@
                 };
                 data.players[currentPlayer.name] = currentPlayer;
                 saveData(data);
-                addLog(`创建新角色：${currentPlayer.name}`);
-                addLog(`灵根：${spiritRoot.quality}（${spiritRoot.elements.join('、')}）`);
+                addLog(`鍒涘缓鏂拌鑹诧細${currentPlayer.name}`);
+                addLog(`鐏垫牴锛?{spiritRoot.quality}锛?{spiritRoot.elements.join('銆?)}锛塦);
             }
 
             updatePlayerUI();
@@ -452,9 +452,9 @@
             if (!currentPlayer) return;
             document.getElementById('p-name').textContent = currentPlayer.name;
             document.getElementById('p-realm').textContent = REALMS[currentPlayer.realmLevel].name;
-            document.getElementById('p-age').textContent = currentPlayer.age.toFixed(1) + '岁';
+            document.getElementById('p-age').textContent = currentPlayer.age.toFixed(1) + '宀?;
             const remaining = REALMS[currentPlayer.realmLevel].lifespan - currentPlayer.age;
-            document.getElementById('p-lifespan').textContent = remaining.toFixed(0) + '年';
+            document.getElementById('p-lifespan').textContent = remaining.toFixed(0) + '骞?;
             document.getElementById('p-progress-text').textContent = currentPlayer.realmProgress.toFixed(1) + '%';
             document.getElementById('p-progress-bar').style.width = Math.min(currentPlayer.realmProgress, 100) + '%';
             const power = REALMS[currentPlayer.realmLevel].power + Math.floor(currentPlayer.realmProgress / 100 * REALMS[currentPlayer.realmLevel].power);
@@ -470,15 +470,15 @@
             log.insertBefore(entry, log.firstChild);
         }
 
-        // 修炼
+        // 淇偧
         function cultivate(days) {
             if (!currentPlayer || !currentPlayer.isAlive) return;
 
             for (let i = 0; i < days; i++) {
-                const speed = currentPlayer.spiritRoot.quality === "混沌灵根" ? 3 : 
-                             currentPlayer.spiritRoot.quality === "变异灵根" ? 2.5 :
-                             currentPlayer.spiritRoot.quality === "天灵根" ? 2 :
-                             currentPlayer.spiritRoot.quality === "真灵根" ? 1 : 0.5;
+                const speed = currentPlayer.spiritRoot.quality === "娣锋矊鐏垫牴" ? 3 : 
+                             currentPlayer.spiritRoot.quality === "鍙樺紓鐏垫牴" ? 2.5 :
+                             currentPlayer.spiritRoot.quality === "澶╃伒鏍? ? 2 :
+                             currentPlayer.spiritRoot.quality === "鐪熺伒鏍? ? 1 : 0.5;
                 const gain = Math.floor(10 * speed * (1 + currentPlayer.comprehension / 10));
                 currentPlayer.realmProgress += gain;
 
@@ -490,12 +490,12 @@
 
                 if (currentPlayer.age >= REALMS[currentPlayer.realmLevel].lifespan) {
                     currentPlayer.isAlive = false;
-                    addLog(`[寿元耗尽] ${currentPlayer.name}道消身死...`);
+                    addLog(`[瀵垮厓鑰楀敖] ${currentPlayer.name}閬撴秷韬...`);
                     break;
                 }
             }
 
-            addLog(`修炼${days}天`);
+            addLog(`淇偧${days}澶ー);
             updatePlayerUI();
             savePlayer();
         }
@@ -507,35 +507,35 @@
                 currentPlayer.realmProgress = 0;
                 currentPlayer.maxHp += 50; currentPlayer.maxMp += 30;
                 currentPlayer.hp = currentPlayer.maxHp; currentPlayer.mp = currentPlayer.maxMp;
-                addLog(`[突破成功] 踏入${REALMS[currentPlayer.realmLevel].name}！`);
+                addLog(`[绐佺牬鎴愬姛] 韪忓叆${REALMS[currentPlayer.realmLevel].name}锛乣);
                 if ([2, 5, 8].includes(currentPlayer.realmLevel)) {
-                    addLog('[天降异象] 命格+1');
+                    addLog('[澶╅檷寮傝薄] 鍛芥牸+1');
                     currentPlayer.destiny++;
                 }
             } else {
                 currentPlayer.realmProgress = Math.max(0, currentPlayer.realmProgress - 20);
-                addLog('[突破失败]');
+                addLog('[绐佺牬澶辫触]');
             }
         }
 
-        // 探索
+        // 鎺㈢储
         function explore() {
             if (!currentPlayer || !currentPlayer.isAlive) return;
             const rand = Math.random();
             if (rand < 0.1) {
-                const treasures = [{name: "百年灵芝", grade: "凡品"}, {name: "朱果", grade: "地品"}];
+                const treasures = [{name: "鐧惧勾鐏佃姖", grade: "鍑″搧"}, {name: "鏈辨灉", grade: "鍦板搧"}];
                 const t = randomChoice(treasures);
                 currentPlayer.items.push(t);
-                addLog(`[发现宝物] ${t.name}（${t.grade}）`);
+                addLog(`[鍙戠幇瀹濈墿] ${t.name}锛?{t.grade}锛塦);
             } else if (rand < 0.3) {
-                addLog('[遇到修士] 交流心得，修为+5');
+                addLog('[閬囧埌淇＋] 浜ゆ祦蹇冨緱锛屼慨涓?5');
                 currentPlayer.realmProgress += 5;
             } else if (rand < 0.35) {
-                addLog('[遇到前辈] 悟性+1，修为+20');
+                addLog('[閬囧埌鍓嶈緢] 鎮熸€?1锛屼慨涓?20');
                 currentPlayer.comprehension++;
                 currentPlayer.realmProgress += 20;
             } else {
-                addLog('[平安无事] 在山林间漫步');
+                addLog('[骞冲畨鏃犱簨] 鍦ㄥ北鏋楅棿婕');
                 currentPlayer.karma++;
             }
             updatePlayerUI();
@@ -544,9 +544,9 @@
 
         function showInventory() {
             if (!currentPlayer) return;
-            let msg = `灵石：${currentPlayer.spiritStones}\n\n物品：\n`;
-            msg += currentPlayer.items.length > 0 ? currentPlayer.items.map(i => `- ${i.name}（${i.grade}）`).join('\n') : "（空）";
-            msg += "\n\n功法：\n" + (currentPlayer.skills.length > 0 ? currentPlayer.skills.join('\n') : "（未学习）");
+            let msg = `鐏电煶锛?{currentPlayer.spiritStones}\n\n鐗╁搧锛歕n`;
+            msg += currentPlayer.items.length > 0 ? currentPlayer.items.map(i => `- ${i.name}锛?{i.grade}锛塦).join('\n') : "锛堢┖锛?;
+            msg += "\n\n鍔熸硶锛歕n" + (currentPlayer.skills.length > 0 ? currentPlayer.skills.join('\n') : "锛堟湭瀛︿範锛?);
             alert(msg);
         }
 
@@ -558,18 +558,18 @@
 
         function saveAndExit() {
             savePlayer();
-            addLog('游戏已保存！');
+            addLog('娓告垙宸蹭繚瀛橈紒');
             currentPlayer = null;
             backToMain();
         }
 
-        // 天道模式
+        // 澶╅亾妯″紡
         function godLogin() {
             if (document.getElementById('god-password').value === GOD_PASSWORD) {
                 updateGodView();
                 showScreen('god-view');
             } else {
-                alert('密码错误！');
+                alert('瀵嗙爜閿欒锛?);
             }
         }
 
@@ -588,9 +588,9 @@
                 const power = REALMS[p.realmLevel].power + Math.floor(p.realmProgress / 100 * REALMS[p.realmLevel].power);
                 const remaining = REALMS[p.realmLevel].lifespan - p.age;
                 div.innerHTML = `
-                    <h4>${p.name} ${p.isAlive ? '' : '💀'}</h4>
-                    <p>年龄：${p.age.toFixed(1)}岁 | 寿元：${remaining.toFixed(0)}年 | 战力：${power}</p>
-                    <p>灵根：${p.spiritRoot.quality} | 灵石：${p.spiritStones} | 物品：${p.items.length}件</p>
+                    <h4>${p.name} ${p.isAlive ? '' : '馃拃'}</h4>
+                    <p>骞撮緞锛?{p.age.toFixed(1)}宀?| 瀵垮厓锛?{remaining.toFixed(0)}骞?| 鎴樺姏锛?{power}</p>
+                    <p>鐏垫牴锛?{p.spiritRoot.quality} | 鐏电煶锛?{p.spiritStones} | 鐗╁搧锛?{p.items.length}浠?/p>
                     <span class="realm-badge">${REALMS[p.realmLevel].name}</span>
                 `;
                 list.appendChild(div);
