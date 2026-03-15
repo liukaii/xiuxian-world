@@ -157,14 +157,14 @@ class World:
             result["event"] = "treasure"
             treasure = random.choice(GameConfig.TREASURES)
             player.add_item(treasure.copy())
-            result["messages"].append(f"馃巵 浣犲彂鐜颁簡 {treasure['name']}锛?)
+            result["messages"].append(f"[鍙戠幇瀹濈墿] 浣犲彂鐜颁簡 {treasure['name']}锛?)
             result["messages"].append(f"   鍝佽川锛歿treasure['grade']}锛屾晥鏋滐細{treasure['effect']}")
             result["rewards"].append(treasure)
             
         elif selected["type"] == "cultivator":
             result["event"] = "cultivator"
             other = random.choice([c for c in self.world_cultivators if c.is_alive])
-            result["messages"].append(f"馃懁 浣犻亣鍒颁簡 {other.name}锛坽other.get_realm_name()}锛?)
+            result["messages"].append(f"[閬囧埌淇＋] 浣犻亣鍒颁簡 {other.name}锛坽other.get_realm_name()}锛?)
             
             # 闅忔満浜掑姩
             interaction = random.choice(["friendly", "neutral", "hostile"])
@@ -183,7 +183,7 @@ class World:
             suitable_beasts = [b for b in GameConfig.BEASTS if abs(b["realm"] - player.realm_level) <= 2]
             if suitable_beasts:
                 beast = random.choice(suitable_beasts)
-                result["messages"].append(f"鈿旓笍 浣犻伃閬囦簡 {beast['name']}锛?)
+                result["messages"].append(f"[閬亣濡栧吔] 浣犻伃閬囦簡 {beast['name']}锛?)
                 result["messages"].append(f"   澧冪晫鐩稿綋浜庯細{GameConfig.REALMS[beast['realm']]['name']}")
                 # 杩欓噷鍙互瑙﹀彂鎴樻枟绯荤粺
             else:
@@ -191,18 +191,18 @@ class World:
                 
         elif selected["type"] == "cave":
             result["event"] = "cave"
-            result["messages"].append("馃彌锔?浣犲彂鐜颁簡涓€澶勯殣绉樻礊搴滐紒")
+            result["messages"].append("[鍙戠幇娲炲簻] 浣犲彂鐜颁簡涓€澶勯殣绉樻礊搴滐紒")
             result["messages"].append("   娲炲簻涓技涔庢湁鍓嶄汉鐣欎笅鐨勪紶鎵?..")
             # 鍙互鑾峰緱鍔熸硶鎴栧疂鐗?            
         elif selected["type"] == "merchant":
             result["event"] = "merchant"
-            result["messages"].append("馃洅 浣犻亣鍒颁簡涓€涓鍟?)
+            result["messages"].append("[閬囧埌琛屽晢] 浣犻亣鍒颁簡涓€涓鍟?)
             result["messages"].append("   浠栧嚭鍞悇绉嶄慨鐐艰祫婧愶紝鍙互鐢ㄧ伒鐭宠喘涔?)
             
         elif selected["type"] == "master":
             result["event"] = "master"
             master = random.choice([c for c in self.world_cultivators if c.realm_level > player.realm_level + 2])
-            result["messages"].append(f"馃専 浣犻亣鍒颁簡鍓嶈緢楂樹汉 {master.name}锛坽master.get_realm_name()}锛夛紒")
+            result["messages"].append(f"[閬囧埌鍓嶈緢] 浣犻亣鍒颁簡鍓嶈緢楂樹汉 {master.name}锛坽master.get_realm_name()}锛夛紒")
             result["messages"].append("   鍓嶈緢鐪嬩綘棰囨湁璧勮川锛屾寚鐐逛簡鍑犲彞")
             player.realm_progress += 20
             player.comprehension += 1
@@ -211,7 +211,7 @@ class World:
             result["event"] = "disaster"
             disasters = ["灞卞穿", "娲按", "闆锋毚", "濡栧吔娼?, "榄斾慨琚嚮"]
             disaster = random.choice(disasters)
-            result["messages"].append(f"鈿狅笍 閬亣{disaster}锛?)
+            result["messages"].append(f"[閬亣澶╃伨] 閬亣{disaster}锛?)
             damage = random.randint(10, 30)
             player.take_damage(damage)
             result["messages"].append(f"   浣犲彈浜嗕激锛屾崯澶眥damage}鐐圭敓鍛?)
@@ -225,7 +225,7 @@ class World:
                 "浣犲府鍔╀簡涓€涓糠璺殑鍑′汉",
                 "浣犻噰闆嗕簡涓€浜涙櫘閫氱殑鑽夎嵂"
             ]
-            result["messages"].append(f"鈽笍 {random.choice(peaceful_events)}")
+            result["messages"].append(f"[骞冲畨鏃犱簨] {random.choice(peaceful_events)}")
             player.karma += 1
         
         return result
@@ -236,7 +236,13 @@ class World:
         total_treasures = len([t for t in self.world_treasures if not t.get("found", False)])
         
         status = f"""
-鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?        馃實 淇粰涓栫晫姒傚喌              鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?鏃堕棿: 绗瑊self.year}骞?{self.season}瀛?绗瑊self.day}澶?     鈹?鈹?澶╂皵: {self.weather:<10}                    鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?涓栫晫淇＋: {alive_cultivators:<4}浜哄瓨娲?           鈹?鈹?鏈彂鐜扮殑瀹濈墿: {total_treasures:<4}浠?             鈹?鈹?杩戞湡浜嬩欢: {len(self.events_history):<4}浠?             鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?"""
+----------------------------------------
+           淇粰涓栫晫姒傚喌
+----------------------------------------
+鏃堕棿: 绗瑊self.year}骞?{self.season}瀛?绗瑊self.day}澶?澶╂皵: {self.weather}
+----------------------------------------
+涓栫晫淇＋: {alive_cultivators}浜哄瓨娲?鏈彂鐜扮殑瀹濈墿: {total_treasures}浠?杩戞湡浜嬩欢: {len(self.events_history)}浠?----------------------------------------
+"""
         return status
     
     def get_recent_events(self, count: int = 5) -> List[str]:
