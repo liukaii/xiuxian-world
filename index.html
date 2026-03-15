@@ -1,34 +1,20 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>淇粰涓栫晫 - Xiuxian World</title>
+    <title>Xiuxian World</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             color: #fff;
         }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            padding: 30px 0;
-        }
-        
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; padding: 30px 0; }
         .header h1 {
             font-size: 2.5em;
             background: linear-gradient(45deg, #ffd700, #ff6b6b);
@@ -36,21 +22,13 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
         }
-        
-        .header p {
-            color: #aaa;
-            font-size: 1.1em;
-        }
-        
         .card {
             background: rgba(255,255,255,0.1);
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 20px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
         }
-        
         .card-title {
             font-size: 1.3em;
             margin-bottom: 15px;
@@ -58,7 +36,6 @@
             border-bottom: 2px solid rgba(255,215,0,0.3);
             padding-bottom: 10px;
         }
-        
         .btn {
             display: inline-block;
             padding: 15px 30px;
@@ -68,57 +45,26 @@
             font-size: 1.1em;
             cursor: pointer;
             transition: all 0.3s;
-            text-decoration: none;
             width: 80%;
             max-width: 300px;
         }
-        
-        .btn-primary {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-        }
-        
-        .btn-success {
-            background: linear-gradient(45deg, #11998e, #38ef7d);
-            color: white;
-        }
-        
-        .btn-warning {
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            color: white;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-        
+        .btn-primary { background: linear-gradient(45deg, #667eea, #764ba2); color: white; }
+        .btn-success { background: linear-gradient(45deg, #11998e, #38ef7d); color: white; }
+        .btn-warning { background: linear-gradient(45deg, #f093fb, #f5576c); color: white; }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-bottom: 20px;
         }
-        
         .stat-item {
             background: rgba(255,255,255,0.05);
             padding: 15px;
             border-radius: 10px;
             text-align: center;
         }
-        
-        .stat-label {
-            font-size: 0.9em;
-            color: #aaa;
-            margin-bottom: 5px;
-        }
-        
-        .stat-value {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #ffd700;
-        }
-        
+        .stat-label { font-size: 0.9em; color: #aaa; margin-bottom: 5px; }
+        .stat-value { font-size: 1.5em; font-weight: bold; color: #ffd700; }
         .progress-bar {
             width: 100%;
             height: 20px;
@@ -127,13 +73,11 @@
             overflow: hidden;
             margin: 10px 0;
         }
-        
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #667eea, #764ba2);
             transition: width 0.3s;
         }
-        
         .log {
             background: rgba(0,0,0,0.3);
             border-radius: 10px;
@@ -141,51 +85,9 @@
             max-height: 300px;
             overflow-y: auto;
             font-size: 0.9em;
-            line-height: 1.6;
         }
-        
-        .log-entry {
-            padding: 5px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        .player-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        
-        .player-item {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-        }
-        
-        .player-item h4 {
-            color: #ffd700;
-            margin-bottom: 5px;
-        }
-        
-        .player-item p {
-            font-size: 0.85em;
-            color: #aaa;
-        }
-        
-        .realm-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b);
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        input[type="text"], input[type="password"] {
+        .hidden { display: none !important; }
+        input {
             width: 100%;
             padding: 15px;
             margin: 10px 0;
@@ -195,91 +97,71 @@
             color: white;
             font-size: 1em;
         }
-        
-        input::placeholder {
-            color: #888;
-        }
-        
-        .menu-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
+        .menu-grid { display: flex; flex-direction: column; align-items: center; }
         @media (max-width: 600px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
+            .stats-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2em; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 鏍囬 -->
         <div class="header">
-            <h1>鈿旓笍 淇粰涓栫晫</h1>
-            <p>Xiuxian World - A Cultivation Journey</p>
+            <h1>Xiuxian World</h1>
+            <p>A Cultivation Journey</p>
         </div>
 
-        <!-- 涓昏彍鍗?-->
         <div id="main-menu" class="card">
-            <div class="card-title">閫夋嫨韬唤杩涘叆</div>
+            <div class="card-title">Select Mode</div>
             <div class="menu-grid">
-                <button class="btn btn-primary" onclick="showPlayerLogin()">馃幃 鐜╁妯″紡</button>
-                <button class="btn btn-warning" onclick="showGodLogin()">馃憗锔?澶╅亾妯″紡</button>
+                <button class="btn btn-primary" onclick="showPlayerLogin()">Player Mode</button>
+                <button class="btn btn-warning" onclick="showGodLogin()">God Mode</button>
             </div>
         </div>
 
-        <!-- 鐜╁鐧诲綍 -->
         <div id="player-login" class="card hidden">
-            <div class="card-title">鐜╁鐧诲綍</div>
-            <input type="text" id="player-name" placeholder="杈撳叆瑙掕壊鍚嶏紙鐣欑┖鍒涘缓鏂拌鑹诧級">
+            <div class="card-title">Player Login</div>
+            <input type="text" id="player-name" placeholder="Enter name (empty for new)">
             <div style="text-align: center; margin-top: 20px;">
-                <button class="btn btn-success" onclick="playerLogin()">杩涘叆娓告垙</button>
-                <button class="btn" onclick="backToMain()">杩斿洖</button>
+                <button class="btn btn-success" onclick="playerLogin()">Enter Game</button>
+                <button class="btn" onclick="backToMain()">Back</button>
             </div>
         </div>
 
-        <!-- 澶╅亾鐧诲綍 -->
         <div id="god-login" class="card hidden">
-            <div class="card-title">澶╅亾妯″紡楠岃瘉</div>
-            <input type="password" id="god-password" placeholder="杈撳叆澶╅亾瀵嗙爜">
+            <div class="card-title">God Mode</div>
+            <input type="password" id="god-password" placeholder="Enter password">
             <div style="text-align: center; margin-top: 20px;">
-                <button class="btn btn-warning" onclick="godLogin()">杩涘叆澶╅亾</button>
-                <button class="btn" onclick="backToMain()">杩斿洖</button>
+                <button class="btn btn-warning" onclick="godLogin()">Enter</button>
+                <button class="btn" onclick="backToMain()">Back</button>
             </div>
         </div>
 
-        <!-- 鐜╁娓告垙 -->
         <div id="player-game" class="hidden">
             <div class="card">
-                <div class="card-title">瑙掕壊淇℃伅</div>
+                <div class="card-title">Character Info</div>
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-label">濮撳悕</div>
+                        <div class="stat-label">Name</div>
                         <div class="stat-value" id="p-name">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">澧冪晫</div>
+                        <div class="stat-label">Realm</div>
                         <div class="stat-value" id="p-realm">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">骞撮緞</div>
+                        <div class="stat-label">Age</div>
                         <div class="stat-value" id="p-age">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">瀵垮厓</div>
+                        <div class="stat-label">Lifespan</div>
                         <div class="stat-value" id="p-lifespan">-</div>
                     </div>
                 </div>
                 
                 <div style="margin: 15px 0;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>淇负杩涘害</span>
+                        <span>Progress</span>
                         <span id="p-progress-text">0%</span>
                     </div>
                     <div class="progress-bar">
@@ -289,89 +171,85 @@
 
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-label">鎴樺姏</div>
+                        <div class="stat-label">Power</div>
                         <div class="stat-value" id="p-power">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">鐏电煶</div>
+                        <div class="stat-label">Stones</div>
                         <div class="stat-value" id="p-stones">-</div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-title">琛屽姩</div>
+                <div class="card-title">Actions</div>
                 <div class="menu-grid">
-                    <button class="btn btn-primary" onclick="cultivate(1)">淇偧1澶?/button>
-                    <button class="btn btn-primary" onclick="cultivate(10)">淇偧10澶?/button>
-                    <button class="btn btn-success" onclick="explore()">鎺㈢储涓栫晫</button>
-                    <button class="btn" onclick="showInventory()">鏌ョ湅鐗╁搧</button>
+                    <button class="btn btn-primary" onclick="cultivate(1)">Cultivate 1 Day</button>
+                    <button class="btn btn-primary" onclick="cultivate(10)">Cultivate 10 Days</button>
+                    <button class="btn btn-success" onclick="explore()">Explore</button>
+                    <button class="btn" onclick="showInventory()">Inventory</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-title">淇偧鏃ュ織</div>
+                <div class="card-title">Log</div>
                 <div class="log" id="player-log">
-                    <div class="log-entry">娆㈣繋鏉ュ埌淇粰涓栫晫...</div>
+                    <div>Welcome to Xiuxian World...</div>
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 20px;">
-                <button class="btn" onclick="saveAndExit()">馃捑 淇濆瓨骞堕€€鍑?/button>
+                <button class="btn" onclick="saveAndExit()">Save & Exit</button>
             </div>
         </div>
 
-        <!-- 澶╅亾鐣岄潰 -->
         <div id="god-view" class="hidden">
             <div class="card">
-                <div class="card-title">涓栫晫姒傚喌</div>
+                <div class="card-title">World Overview</div>
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-label">鐜╁鏁伴噺</div>
+                        <div class="stat-label">Players</div>
                         <div class="stat-value" id="w-players">-</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">鎬讳慨澹?/div>
+                        <div class="stat-label">Total</div>
                         <div class="stat-value" id="w-total">-</div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-title">鎵€鏈夌帺瀹?/div>
-                <div class="player-list" id="god-player-list">
-                </div>
+                <div class="card-title">All Players</div>
+                <div id="god-player-list"></div>
             </div>
 
             <div style="text-align: center; margin-top: 20px;">
-                <button class="btn" onclick="backToMain()">閫€鍑哄ぉ閬?/button>
+                <button class="btn" onclick="backToMain()">Exit</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 娓告垙鏁版嵁
         const REALMS = [
-            {name: "鐐兼皵鏈?, lifespan: 100, power: 1},
-            {name: "绛戝熀鏈?, lifespan: 200, power: 10},
-            {name: "閲戜腹鏈?, lifespan: 500, power: 100},
-            {name: "鍏冨┐鏈?, lifespan: 1000, power: 1000},
-            {name: "鍖栫鏈?, lifespan: 2000, power: 10000},
-            {name: "鐐艰櫄鏈?, lifespan: 5000, power: 100000},
-            {name: "鍚堜綋鏈?, lifespan: 10000, power: 1000000},
-            {name: "澶т箻鏈?, lifespan: 20000, power: 10000000},
-            {name: "娓″姭鏈?, lifespan: 50000, power: 100000000},
-            {name: "鐪熶粰", lifespan: -1, power: 1000000000}
+            {name: "Qi Refining", lifespan: 100, power: 1},
+            {name: "Foundation", lifespan: 200, power: 10},
+            {name: "Golden Core", lifespan: 500, power: 100},
+            {name: "Nascent Soul", lifespan: 1000, power: 1000},
+            {name: "Soul Transformation", lifespan: 2000, power: 10000},
+            {name: "Void Refining", lifespan: 5000, power: 100000},
+            {name: "Body Integration", lifespan: 10000, power: 1000000},
+            {name: "Great Ascension", lifespan: 20000, power: 10000000},
+            {name: "Tribulation", lifespan: 50000, power: 100000000},
+            {name: "True Immortal", lifespan: -1, power: 1000000000}
         ];
 
-        const SURNAMES = ["鏉?, "鐜?, "寮?, "鍒?, "闄?, "鏉?, "璧?, "榛?, "鍛?, "鍚?];
-        const NAMES = ["浜?, "椋?, "闆?, "澶?, "鍦?, "鐜?, "榛?, "瀹?, "瀹?, "灞?, "娌?, "娴?, "宸?, "闈?, "绾?, "绱?, "鐧?, "閲?, "鏈?, "姘?, "鐏?, "鍦?, "闀?, "鐢?, "姘?, "鎭?, "閫?, "閬?];
-        const ELEMENTS = ["閲?, "鏈?, "姘?, "鐏?, "鍦?];
+        const SURNAMES = ["Li", "Wang", "Zhang", "Liu", "Chen", "Yang", "Zhao", "Huang", "Zhou", "Wu"];
+        const NAMES = ["Yun", "Feng", "Lei", "Tian", "Di", "Xuan", "Huang", "Yu", "Zhou", "Shan", "He", "Hai", "Chuan", "Qing", "Hong", "Zi", "Bai", "Jin", "Mu", "Shui", "Huo", "Tu", "Chang", "Sheng", "Yong", "Heng", "Xiao", "Yao"];
+        const ELEMENTS = ["Metal", "Wood", "Water", "Fire", "Earth"];
 
         let currentPlayer = null;
         const GOD_PASSWORD = "tiandao123";
 
-        // 鏁版嵁绠＄悊
         function loadData() {
             const data = localStorage.getItem('xiuxian_world_v2');
             return data ? JSON.parse(data) : { players: {} };
@@ -381,7 +259,6 @@
             localStorage.setItem('xiuxian_world_v2', JSON.stringify(data));
         }
 
-        // 宸ュ叿鍑芥暟
         function randomChoice(arr) {
             return arr[Math.floor(Math.random() * arr.length)];
         }
@@ -393,15 +270,14 @@
         function generateSpiritRoot() {
             const rand = Math.random();
             let quality, elements;
-            if (rand < 0.005) { quality = "娣锋矊鐏垫牴"; elements = [...ELEMENTS]; }
-            else if (rand < 0.02) { quality = "鍙樺紓鐏垫牴"; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
-            else if (rand < 0.1) { quality = "澶╃伒鏍?; elements = [randomChoice(ELEMENTS)]; }
-            else if (rand < 0.4) { quality = "鐪熺伒鏍?; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
-            else { quality = "浼伒鏍?; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS), randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
+            if (rand < 0.005) { quality = "Chaos"; elements = [...ELEMENTS]; }
+            else if (rand < 0.02) { quality = "Mutated"; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
+            else if (rand < 0.1) { quality = "Heaven"; elements = [randomChoice(ELEMENTS)]; }
+            else if (rand < 0.4) { quality = "True"; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
+            else { quality = "Fake"; elements = [randomChoice(ELEMENTS), randomChoice(ELEMENTS), randomChoice(ELEMENTS), randomChoice(ELEMENTS)]; }
             return { quality, elements };
         }
 
-        // 鐣岄潰鍒囨崲
         function showScreen(id) {
             ['main-menu', 'player-login', 'god-login', 'player-game', 'god-view'].forEach(s => {
                 document.getElementById(s).classList.add('hidden');
@@ -413,14 +289,13 @@
         function showGodLogin() { showScreen('god-login'); }
         function backToMain() { showScreen('main-menu'); }
 
-        // 鐜╁鐧诲綍
         function playerLogin() {
             const name = document.getElementById('player-name').value.trim();
             const data = loadData();
 
             if (name && data.players[name]) {
                 currentPlayer = data.players[name];
-                addLog(`娆㈣繋鍥炴潵锛?{currentPlayer.name}锛乣);
+                addLog('Welcome back, ' + currentPlayer.name + '!');
             } else {
                 const spiritRoot = generateSpiritRoot();
                 currentPlayer = {
@@ -440,8 +315,8 @@
                 };
                 data.players[currentPlayer.name] = currentPlayer;
                 saveData(data);
-                addLog(`鍒涘缓鏂拌鑹诧細${currentPlayer.name}`);
-                addLog(`鐏垫牴锛?{spiritRoot.quality}锛?{spiritRoot.elements.join('銆?)}锛塦);
+                addLog('New character: ' + currentPlayer.name);
+                addLog('Spirit Root: ' + spiritRoot.quality + ' (' + spiritRoot.elements.join(', ') + ')');
             }
 
             updatePlayerUI();
@@ -452,9 +327,9 @@
             if (!currentPlayer) return;
             document.getElementById('p-name').textContent = currentPlayer.name;
             document.getElementById('p-realm').textContent = REALMS[currentPlayer.realmLevel].name;
-            document.getElementById('p-age').textContent = currentPlayer.age.toFixed(1) + '宀?;
+            document.getElementById('p-age').textContent = currentPlayer.age.toFixed(1) + ' years';
             const remaining = REALMS[currentPlayer.realmLevel].lifespan - currentPlayer.age;
-            document.getElementById('p-lifespan').textContent = remaining.toFixed(0) + '骞?;
+            document.getElementById('p-lifespan').textContent = remaining.toFixed(0) + ' years';
             document.getElementById('p-progress-text').textContent = currentPlayer.realmProgress.toFixed(1) + '%';
             document.getElementById('p-progress-bar').style.width = Math.min(currentPlayer.realmProgress, 100) + '%';
             const power = REALMS[currentPlayer.realmLevel].power + Math.floor(currentPlayer.realmProgress / 100 * REALMS[currentPlayer.realmLevel].power);
@@ -465,20 +340,18 @@
         function addLog(msg) {
             const log = document.getElementById('player-log');
             const entry = document.createElement('div');
-            entry.className = 'log-entry';
             entry.textContent = msg;
             log.insertBefore(entry, log.firstChild);
         }
 
-        // 淇偧
         function cultivate(days) {
             if (!currentPlayer || !currentPlayer.isAlive) return;
 
             for (let i = 0; i < days; i++) {
-                const speed = currentPlayer.spiritRoot.quality === "娣锋矊鐏垫牴" ? 3 : 
-                             currentPlayer.spiritRoot.quality === "鍙樺紓鐏垫牴" ? 2.5 :
-                             currentPlayer.spiritRoot.quality === "澶╃伒鏍? ? 2 :
-                             currentPlayer.spiritRoot.quality === "鐪熺伒鏍? ? 1 : 0.5;
+                const speed = currentPlayer.spiritRoot.quality === "Chaos" ? 3 : 
+                             currentPlayer.spiritRoot.quality === "Mutated" ? 2.5 :
+                             currentPlayer.spiritRoot.quality === "Heaven" ? 2 :
+                             currentPlayer.spiritRoot.quality === "True" ? 1 : 0.5;
                 const gain = Math.floor(10 * speed * (1 + currentPlayer.comprehension / 10));
                 currentPlayer.realmProgress += gain;
 
@@ -490,12 +363,12 @@
 
                 if (currentPlayer.age >= REALMS[currentPlayer.realmLevel].lifespan) {
                     currentPlayer.isAlive = false;
-                    addLog(`[瀵垮厓鑰楀敖] ${currentPlayer.name}閬撴秷韬...`);
+                    addLog('[Lifespan Ended] ' + currentPlayer.name + ' died...');
                     break;
                 }
             }
 
-            addLog(`淇偧${days}澶ー);
+            addLog('Cultivated ' + days + ' days');
             updatePlayerUI();
             savePlayer();
         }
@@ -507,35 +380,34 @@
                 currentPlayer.realmProgress = 0;
                 currentPlayer.maxHp += 50; currentPlayer.maxMp += 30;
                 currentPlayer.hp = currentPlayer.maxHp; currentPlayer.mp = currentPlayer.maxMp;
-                addLog(`[绐佺牬鎴愬姛] 韪忓叆${REALMS[currentPlayer.realmLevel].name}锛乣);
+                addLog('[Breakthrough] Entered ' + REALMS[currentPlayer.realmLevel].name + '!');
                 if ([2, 5, 8].includes(currentPlayer.realmLevel)) {
-                    addLog('[澶╅檷寮傝薄] 鍛芥牸+1');
+                    addLog('[Heaven Sign] Destiny +1');
                     currentPlayer.destiny++;
                 }
             } else {
                 currentPlayer.realmProgress = Math.max(0, currentPlayer.realmProgress - 20);
-                addLog('[绐佺牬澶辫触]');
+                addLog('[Breakthrough Failed]');
             }
         }
 
-        // 鎺㈢储
         function explore() {
             if (!currentPlayer || !currentPlayer.isAlive) return;
             const rand = Math.random();
             if (rand < 0.1) {
-                const treasures = [{name: "鐧惧勾鐏佃姖", grade: "鍑″搧"}, {name: "鏈辨灉", grade: "鍦板搧"}];
+                const treasures = [{name: "Ganoderma", grade: "Common"}, {name: "Zhu Guo", grade: "Rare"}];
                 const t = randomChoice(treasures);
                 currentPlayer.items.push(t);
-                addLog(`[鍙戠幇瀹濈墿] ${t.name}锛?{t.grade}锛塦);
+                addLog('[Treasure] Got ' + t.name + ' (' + t.grade + ')');
             } else if (rand < 0.3) {
-                addLog('[閬囧埌淇＋] 浜ゆ祦蹇冨緱锛屼慨涓?5');
+                addLog('[Met Cultivator] Progress +5');
                 currentPlayer.realmProgress += 5;
             } else if (rand < 0.35) {
-                addLog('[閬囧埌鍓嶈緢] 鎮熸€?1锛屼慨涓?20');
+                addLog('[Met Master] Comprehension +1, Progress +20');
                 currentPlayer.comprehension++;
                 currentPlayer.realmProgress += 20;
             } else {
-                addLog('[骞冲畨鏃犱簨] 鍦ㄥ北鏋楅棿婕');
+                addLog('[Peaceful] Walking in mountains');
                 currentPlayer.karma++;
             }
             updatePlayerUI();
@@ -544,9 +416,9 @@
 
         function showInventory() {
             if (!currentPlayer) return;
-            let msg = `鐏电煶锛?{currentPlayer.spiritStones}\n\n鐗╁搧锛歕n`;
-            msg += currentPlayer.items.length > 0 ? currentPlayer.items.map(i => `- ${i.name}锛?{i.grade}锛塦).join('\n') : "锛堢┖锛?;
-            msg += "\n\n鍔熸硶锛歕n" + (currentPlayer.skills.length > 0 ? currentPlayer.skills.join('\n') : "锛堟湭瀛︿範锛?);
+            let msg = 'Stones: ' + currentPlayer.spiritStones + '\n\nItems:\n';
+            msg += currentPlayer.items.length > 0 ? currentPlayer.items.map(i => '- ' + i.name + ' (' + i.grade + ')').join('\n') : '(Empty)';
+            msg += '\n\nSkills:\n' + (currentPlayer.skills.length > 0 ? currentPlayer.skills.join('\n') : '(None)');
             alert(msg);
         }
 
@@ -558,18 +430,17 @@
 
         function saveAndExit() {
             savePlayer();
-            addLog('娓告垙宸蹭繚瀛橈紒');
+            addLog('Game saved!');
             currentPlayer = null;
             backToMain();
         }
 
-        // 澶╅亾妯″紡
         function godLogin() {
             if (document.getElementById('god-password').value === GOD_PASSWORD) {
                 updateGodView();
                 showScreen('god-view');
             } else {
-                alert('瀵嗙爜閿欒锛?);
+                alert('Wrong password!');
             }
         }
 
@@ -584,15 +455,13 @@
             
             players.forEach(p => {
                 const div = document.createElement('div');
-                div.className = 'player-item';
+                div.style.cssText = 'background: rgba(255,255,255,0.05); padding: 15px; margin-bottom: 10px; border-radius: 10px;';
                 const power = REALMS[p.realmLevel].power + Math.floor(p.realmProgress / 100 * REALMS[p.realmLevel].power);
                 const remaining = REALMS[p.realmLevel].lifespan - p.age;
-                div.innerHTML = `
-                    <h4>${p.name} ${p.isAlive ? '' : '馃拃'}</h4>
-                    <p>骞撮緞锛?{p.age.toFixed(1)}宀?| 瀵垮厓锛?{remaining.toFixed(0)}骞?| 鎴樺姏锛?{power}</p>
-                    <p>鐏垫牴锛?{p.spiritRoot.quality} | 鐏电煶锛?{p.spiritStones} | 鐗╁搧锛?{p.items.length}浠?/p>
-                    <span class="realm-badge">${REALMS[p.realmLevel].name}</span>
-                `;
+                div.innerHTML = '<h4 style="color: #ffd700;">' + p.name + ' ' + (p.isAlive ? '' : '💀') + '</h4>' +
+                    '<p style="color: #aaa; font-size: 0.85em;">Age: ' + p.age.toFixed(1) + ' | Lifespan: ' + remaining.toFixed(0) + ' | Power: ' + power + '</p>' +
+                    '<p style="color: #aaa; font-size: 0.85em;">Spirit Root: ' + p.spiritRoot.quality + ' | Stones: ' + p.spiritStones + '</p>' +
+                    '<span style="display: inline-block; background: linear-gradient(45deg, #ffd700, #ff6b6b); padding: 5px 15px; border-radius: 15px; font-size: 0.85em; margin-top: 10px;">' + REALMS[p.realmLevel].name + '</span>';
                 list.appendChild(div);
             });
         }
